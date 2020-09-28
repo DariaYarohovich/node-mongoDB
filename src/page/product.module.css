@@ -1,0 +1,31 @@
+.product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.title {
+  margin: 0;
+  margin-bottom: 20px;
+  font-size: 2.8rem;
+  font-weight: 600;
+  color: darkslategrey;
+}
+
+.img {
+  max-height: 400px;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.desc {
+  font-size: 2rem;
+  color: darkslategrey;
+}
+
+.price {
+  margin: 0;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  font-weight: 600;
+  color: firebrick;
+}

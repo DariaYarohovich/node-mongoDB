@@ -8,8 +8,10 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.20.0",
     "express": "^4.17.1",
+    "final-form": "^4.20.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-final-form": "^6.5.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3"
   },

@@ -6,9 +6,9 @@ import { Switch, Redirect, Route } from "react-router-dom";
 
 class App extends Component {
   state = {
-    isAuth: true,
+    isAuth: false,
     error: undefined,
-    authMode: "login",
+    authMode: "login"
   };
 
   onAuth = ({ email, password }) => {
@@ -23,7 +23,7 @@ class App extends Component {
   onLogout = () => {
     this.setState({
       ...this.state,
-      isAuth: false,
+      isAuth: false
     });
   };
 
@@ -48,9 +48,11 @@ class App extends Component {
           <Redirect from={"/products"} to={"/auth"} />
           <Route
             path={"/auth"}
-            render={() => (
-              <Auth onAuth={this.onAuth} mode={this.state.authMode} />
-            )}
+            render={() => <Auth buttonLabel="Login" onAuth={this.onAuth} />}
+          />
+          <Route
+            path={"/signup"}
+            render={() => <Auth buttonLabel="Sign Up" onAuth={this.onAuth} />}
           />
         </Switch>
       );

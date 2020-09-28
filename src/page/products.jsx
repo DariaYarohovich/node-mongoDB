@@ -1,25 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { Link } from "react-router-dom";
-import "./products.css";
-
-const productsList = [
-  {
-    _id: 2,
-    title: "Book",
-    description: "An interesting book",
-    price: "$12,76",
-    image:
-      "https://cdn.elearningindustry.com/wp-content/uploads/2016/05/top-10-books-every-college-student-read-1024x640.jpeg",
-  },
-  {
-    _id: 3,
-    title: "New Book",
-    description: "An interesting book",
-    price: "$128,76",
-    image:
-      "https://cdn.elearningindustry.com/wp-content/uploads/2016/05/top-10-books-every-college-student-read-1024x640.jpeg",
-  },
-];
+import { productsList } from "../stub-data";
+import styles from "./products.module.css";
 
 export const Products = React.memo(() => {
   const [products, setProducts] = useState([]);
@@ -28,7 +10,7 @@ export const Products = React.memo(() => {
     setProducts(productsList);
   }, []);
 
-  const deleteProduct = useCallback((id) => {
+  const deleteProduct = useCallback(id => {
     // delete product by id
   }, []);
 
@@ -36,7 +18,7 @@ export const Products = React.memo(() => {
     "There are no products"
   ) : (
     <div className="products-list">
-      {products.map((product) => (
+      {products.map(product => (
         <Product key={product._id} {...product} handleDelete={deleteProduct} />
       ))}
     </div>
@@ -45,21 +27,23 @@ export const Products = React.memo(() => {
 
 const Product = React.memo(
   ({ _id, title, description, price, image, handleDelete }) => {
+    const { product, img, title: titleStyle, desc, price: priceStyle } = styles;
+
     const deleteProduct = useCallback(() => {
       handleDelete(_id);
     }, [handleDelete, _id]);
 
     return (
-      <article className="product">
-        <img className="product__img" src={image} alt={title} />
-        <div className="product__meta">
-          <Link to={`/products/${_id}`} className="product__title">
+      <article className={product}>
+        <img className={img} src={image} alt={title} />
+        <div>
+          <Link to={`/products/${_id}`} className={titleStyle}>
             {title}
           </Link>
-          <p className="product__desc">{description}</p>
-          <p className="product__price">{price}</p>
-          <div className="product__buttons">
-            <button type="button">Eit</button>
+          <p className={desc}>{description}</p>
+          <p className={priceStyle}>{price}</p>
+          <div>
+            <Link to={`/products/${_id}/edit`}>Edit</Link>
             <button type="button" onClick={deleteProduct}>
               Delete
             </button>

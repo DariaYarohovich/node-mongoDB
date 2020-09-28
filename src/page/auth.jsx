@@ -1,30 +1,25 @@
 import React from "react";
+import { Form } from "react-final-form";
+import { Input, Button } from "../components";
 
-export const Auth = ({onAuth, mode}) => {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-
-  const handleSubmit = React.useCallback(() => {
-    onAuth({ email, password });
-  }, [onAuth, email, password]);
-
+export const Auth = ({ buttonLabel, onAuth }) => {
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="email"
-        name="email"
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
-      />
-      <input
-        type="password"
-        name="password"
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
-      />
-      <button type="submit">{mode === 'login' ? 'Login' : 'Sign Up'}</button>
-    </form>
+    <Form onSubmit={onAuth}>
+      {({ handleSubmit }) => (
+        <form
+          onSubmit={handleSubmit}
+          style={{ width: "50%", margin: "0 auto" }}
+        >
+          <Input label="Email" name="email" placeholder="Email" type="text" />
+          <Input
+            label="Password"
+            name="password"
+            placeholder="Password"
+            type="password"
+          />
+          <Button text={buttonLabel} />
+        </form>
+      )}
+    </Form>
   );
 };
